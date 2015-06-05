@@ -147,12 +147,12 @@
 			isa = PBXGroup;
 			children = (
 				40B1861B1B20C88100636EEE /* Hermes.h */,
-				40B186191B20C88100636EEE /* Supporting Files */,
 				40B186581B20C8A000636EEE /* Hermes.swift */,
 				40B1865A1B20C8FF00636EEE /* HermesNotification.swift */,
 				40B1865C1B20C91B00636EEE /* HermesBulletinView.swift */,
-				404D3D2A1B20D05800E7A311 /* HermesDefaultNotificationView.swift */,
 				404D3D2E1B221B8A00E7A311 /* HermesNotificationView.swift */,
+				404D3D2A1B20D05800E7A311 /* HermesDefaultNotificationView.swift */,
+				40B186191B20C88100636EEE /* Supporting Files */,
 			);
 			path = Hermes;
 			sourceTree = "<group>";
