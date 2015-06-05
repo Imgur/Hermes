@@ -1,4 +1,5 @@
 import UIKit
+import AVFoundation
 
 @objc public protocol HermesDelegate {
   /**
@@ -36,11 +37,9 @@ public class Hermes: NSObject, HermesBulletinViewDelegate {
 
   // MARK: - private variables
   private var bulletinView: HermesBulletinView?
-  private var notifications = [HermesNotification]() {
-    didSet {
-      showNotifications()
-    }
-  }
+  private var notifications = [HermesNotification]()
+  
+  var audioPlayer: AVAudioPlayer?
 
   /**
   When Hermes is waiting, he will collect all of your notifications. Use wait() and go() to tell Hermes when to collect and when to deliver notifications
@@ -71,6 +70,14 @@ public class Hermes: NSObject, HermesBulletinViewDelegate {
   */
   public func postNotifications(notifications: [HermesNotification]) {
     self.notifications += notifications
+    
+    if let firstNotification = self.notifications.first {
+      if firstNotification.soundPath != nil {
+        prepareSound(path: firstNotification.soundPath!)
+      }
+    }
+    
+    showNotifications()
   }
   
   /**
@@ -108,6 +115,14 @@ public class Hermes: NSObject, HermesBulletinViewDelegate {
     bulletinView!.notifications = notifications
     
     bulletinView!.show()
+    audioPlayer?.play()
+  }
+
+  // Initial setup
+  func prepareSound(#path: String) {
+    var sound = NSURL(fileURLWithPath: path)
+    audioPlayer = AVAudioPlayer(contentsOfURL: sound, error: nil)
+    audioPlayer!.prepareToPlay()
   }
   
   // MARK: - HermesBulletinViewDelegate

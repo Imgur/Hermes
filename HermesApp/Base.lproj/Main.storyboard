@@ -15,7 +15,16 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="N8B-fq-gmZ">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="N8B-fq-gmZ" firstAttribute="height" secondItem="kh9-bI-dsS" secondAttribute="height" id="HYE-wv-t0X"/>
+                            <constraint firstItem="N8B-fq-gmZ" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" id="cpx-zo-kyP"/>
+                        </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                 </viewController>
@@ -23,4 +32,7 @@
             </objects>
         </scene>
     </scenes>
+    <resources>
+        <image name="background" width="414" height="736"/>
+    </resources>
 </document>

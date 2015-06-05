@@ -6,6 +6,7 @@ public class HermesNotification: NSObject {
   public var image: UIImage?
   public var imageURL: NSURL?
   public var tag: String?
+  public var soundPath: String?
   
   weak private var _target: AnyObject?
   public var target: AnyObject? {
