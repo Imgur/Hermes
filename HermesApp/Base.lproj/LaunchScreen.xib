@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D2134" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="UdY-dt-Fsq">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="X1t-ks-kka">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="X1t-ks-kka" secondAttribute="bottom" id="8CM-Dq-K1f"/>
+                <constraint firstAttribute="trailing" secondItem="UdY-dt-Fsq" secondAttribute="trailing" id="H24-g2-slG"/>
+                <constraint firstAttribute="trailing" secondItem="X1t-ks-kka" secondAttribute="trailing" id="IOc-9Z-5Nc"/>
+                <constraint firstItem="X1t-ks-kka" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="R4Q-DD-typ"/>
+                <constraint firstItem="UdY-dt-Fsq" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="eQB-PT-l5S"/>
+                <constraint firstAttribute="bottom" secondItem="UdY-dt-Fsq" secondAttribute="bottom" id="euf-QL-q5I"/>
+                <constraint firstItem="UdY-dt-Fsq" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="iZ4-Jg-pTO"/>
+                <constraint firstItem="X1t-ks-kka" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="zks-M7-eQT"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="548" y="455"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="background" width="414" height="736"/>
+        <image name="logo" width="67" height="40"/>
+    </resources>
+</document>
