@@ -1,7 +1,20 @@
 import UIKit
 
 public class HermesNotification: NSObject {
-  public var text: NSAttributedString?
+  
+  public var text: String? {
+    set(text) {
+      if (text != nil) {
+        attributedText = NSAttributedString(string: text!)
+      } else {
+        attributedText = nil
+      }
+    }
+    get {
+      return attributedText?.string
+    }
+  }
+  public var attributedText: NSAttributedString?
   public var highlightColor: UIColor?
   public var image: UIImage?
   public var imageURL: NSURL?

@@ -10,19 +10,19 @@ class ViewController: UIViewController, HermesDelegate {
     hermes.delegate = self
     
     var notification1 = HermesNotification()
-    notification1.text = NSAttributedString(string: "Testing 123!!!")
+    notification1.text = "Testing 123!!!"
     notification1.image = UIImage(named: "logo")
     notification1.highlightColor = .greenColor()
     notification1.setTarget(self, selector:"foo:")
     notification1.soundPath = NSBundle.mainBundle().pathForResource("notify", ofType: "wav")
     
     var notification2 = HermesNotification()
-    notification2.text = NSAttributedString(string: "Someone just gave you a gift!")
+    notification2.text = "Someone just gave you a gift!"
     notification2.image = UIImage(named: "logo")
     notification2.highlightColor = .redColor()
     
     var notification3 = HermesNotification()
-    notification3.text = NSAttributedString(string: "ZOMG ROFLCOPTERS!!! This is reallllly long omg hahaha askljd alksjd asd")
+    notification3.text = "ZOMG ROFLCOPTERS!!! This is reallllly long omg hahaha askljd alksjd asd"
     notification3.image = UIImage(named: "logo")
     notification3.highlightColor = .yellowColor()
 

@@ -3,7 +3,7 @@ import UIKit
 class HermesDefaultNotificationView: HermesNotificationView {
   override var notification: HermesNotification? {
     didSet {
-      textLabel.attributedText = notification?.text
+      textLabel.attributedText = notification?.attributedText
       colorView.backgroundColor = notification?.highlightColor
       imageView.image = notification?.image
       layoutSubviews()
