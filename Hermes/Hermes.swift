@@ -110,7 +110,7 @@ public class Hermes: NSObject, HermesBulletinViewDelegate {
     bulletinView!.show()
   }
   
-  // MARK - HermesBulletinViewDelegate
+  // MARK: - HermesBulletinViewDelegate
   
   func bulletinViewDidClose(bulletinView: HermesBulletinView) {
     notifications.removeAll(keepCapacity: true)
