@@ -22,7 +22,7 @@ class HermesDefaultNotificationView: HermesNotificationView {
     super.init(frame: frame)
     imageView.contentMode = .ScaleAspectFit
     textLabel.textColor = .whiteColor()
-    textLabel.font = UIFont(name: "Helvetica", size: 14)
+    textLabel.font = UIFont(name: "HelveticaNeue", size: 14)
     textLabel.numberOfLines = 3
     addSubview(imageView)
     addSubview(textLabel)
