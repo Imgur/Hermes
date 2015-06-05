@@ -23,6 +23,8 @@ class HermesBulletinView: UIView, UIScrollViewDelegate {
     }
   }
   
+  var tabView = UIView()
+  
   required init(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
@@ -38,8 +40,11 @@ class HermesBulletinView: UIView, UIScrollViewDelegate {
     backgroundView?.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleTopMargin
     
     scrollView.contentInset = UIEdgeInsetsMake(0, kMargin, 0, kMargin)
+    
+    tabView.backgroundColor = UIColor(white: 1, alpha: 0.4)
     addSubview(backgroundView!)
     addSubview(scrollView)
+    addSubview(tabView)
   }
   
   func pan(gesture: UIPanGestureRecognizer) {
@@ -157,8 +162,8 @@ class HermesBulletinView: UIView, UIScrollViewDelegate {
     var frame = layoutViewFrameInView(view)
     frame.origin.x += kMargin
     frame.size.width -= kMargin * 2
-    frame.origin.y += 8 // TODO
-    frame.size.height -= 16 // TODO
+    frame.origin.y += 10 // TODO
+    frame.size.height -= 10  // TODO
     return frame
   }
   
@@ -199,6 +204,10 @@ class HermesBulletinView: UIView, UIScrollViewDelegate {
     scrollView.frame = bounds
     scrollView.delegate = self
     backgroundView?.frame = CGRectMake(0, 0, bounds.size.width, superview!.bounds.size.height)
+    
+    var tabViewFrame = CGRectMake(0, 4, 40, 2)
+    tabView.frame = tabViewFrame
+    tabView.center = CGPointMake(bounds.size.width / 2, tabView.center.y)
     layoutNotifications()
   }
   
@@ -208,7 +217,7 @@ class HermesBulletinView: UIView, UIScrollViewDelegate {
       return Int((offset.x + pageWidth * 0.5) / pageWidth)
   }
   
-  // MARK - UIScrollViewDelegate
+  // MARK: - UIScrollViewDelegate
   func scrollViewWillBeginDragging(scrollView: UIScrollView) {
     timer.invalidate()
     currentPage = pageFromOffset(scrollView.contentOffset)
