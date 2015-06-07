@@ -28,6 +28,8 @@ Hermes shows all queued up notifications at once, with an easy way to swipe thro
 2. ```hermes.postNotifications([...])```
 
 ###Sample code
+
+**Creating Notifications**
 ```swift
 // uses Hermes singleton
 let hermes = Hermes.sharedInstance
@@ -43,11 +45,18 @@ let failureNotification = HermesNotification()
 failureNotification.text = "Upload failed :("
 failureNotification.image = UIImage(named: "error_icon")
 failureNotification.color = .redColor()
+```
 
-// if you post a notification while another notification stack is showing, it will show once the current stack is gone
+#### Posting Notifications
+
+#####If you post Notifications while a Bulletin is already showing, it will show all of the new Notifications after the current Bulletin closes
+```swift
 hermes.postNotification(successNotification)
 hermes.postNotification(failureNotification)
+```
 
+#####You can tell Hermes to wait and go, to collect a bunch of notifications before showing them 
+```swift
 // we could do use wait(), which tells Hermes to collect notifications without showing them yet
 hermes.wait()
 
@@ -57,7 +66,10 @@ hermes.postNotification(failureNotification)
 
 // this tells Hermes to post all of the notifications in the queue
 hermes.go()
+```
 
+#####Or, you can post an array of notifications that Hermes will show immediately
+```swift
 // we could have also done the above code by simply using postNotifications
 hermes.postNotifications([successNotification, failureNotification])
 ```
