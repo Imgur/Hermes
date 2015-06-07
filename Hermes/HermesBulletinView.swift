@@ -166,8 +166,8 @@ class HermesBulletinView: UIView, UIScrollViewDelegate {
     var frame = layoutViewFrameInView(view)
     frame.origin.x += kMargin
     frame.size.width -= kMargin * 2
-    frame.origin.y += 10 // TODO
-    frame.size.height -= 10  // TODO
+    frame.origin.y += 10 // TODO: configurable
+    frame.size.height -= 10  // TODO: configurable
     return frame
   }
   
