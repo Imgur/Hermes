@@ -1,4 +1,5 @@
 ![hermes logo](http://i.imgur.com/1ZbEIuH.png)
+![hermes](http://i.imgur.com/nahSRpD.png)
 
 Hermes is a simple and robust in-app notification system for iOS written in Swift.  It supports notifications with text/attributedText, an icon, a sound, and a color, and a target/selector pair--out of the box.  You can easily build your own notification template and add any number of attributes to a HermesNotification.
 
