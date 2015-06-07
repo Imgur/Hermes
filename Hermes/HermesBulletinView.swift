@@ -40,6 +40,7 @@ class HermesBulletinView: UIView, UIScrollViewDelegate {
     backgroundView?.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleTopMargin
     
     scrollView.contentInset = UIEdgeInsetsMake(0, kMargin, 0, kMargin)
+    scrollView.delegate = self
     
     tabView.backgroundColor = UIColor(white: 1, alpha: 0.4)
     addSubview(backgroundView!)
@@ -77,10 +78,8 @@ class HermesBulletinView: UIView, UIScrollViewDelegate {
   }
   
   func animateIn() {
-    var bulletinFrame = bulletinFrameInView(superview!)
-    var startFrame = bulletinFrame
-    startFrame.origin.y += superview!.bounds.size.height
-    
+    var bulletinFrame = bulletinFrameInView(self.superview!)
+
     UIView.animateWithDuration(0.4, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
       self.frame = bulletinFrame
       }, completion: { completed in
@@ -88,12 +87,17 @@ class HermesBulletinView: UIView, UIScrollViewDelegate {
     })
     
   }
+  
   func show(view: UIView = (UIApplication.sharedApplication().windows[0] as? UIView)!, animated: Bool = true) {
-    
     // Add to main queue in case the view loaded but wasn't added to the window yet.  This seems to happen in my storyboard test app
     dispatch_async(dispatch_get_main_queue(),{
       view.addSubview(self)
-      self.frame = self.bulletinFrameInView(view)
+      
+      var bulletinFrame = self.bulletinFrameInView(self.superview!)
+      var startFrame = bulletinFrame
+      startFrame.origin.y += self.superview!.bounds.size.height
+      
+      self.frame = startFrame
       self.animateIn()
     })
   }
@@ -168,7 +172,7 @@ class HermesBulletinView: UIView, UIScrollViewDelegate {
   }
   
   func layoutNotifications() {
-    // TODO: handle a relayout
+    // TODO: handle a relayout -- relaying out this view right now adds duplicate noitficationViews
     if superview == nil {
       return
     }
@@ -196,18 +200,17 @@ class HermesBulletinView: UIView, UIScrollViewDelegate {
     }
     
     scrollView.contentSize = CGSizeMake(CGRectGetMaxX(notificationViewFrame), scrollView.bounds.size.height)
-    // TODO: layout horizontally in scrollView
   }
   
   override func layoutSubviews() {
-    // TODO: tabImageView
-    scrollView.frame = bounds
-    scrollView.delegate = self
     backgroundView?.frame = CGRectMake(0, 0, bounds.size.width, superview!.bounds.size.height)
+
+    scrollView.frame = bounds
     
     var tabViewFrame = CGRectMake(0, 4, 40, 2)
     tabView.frame = tabViewFrame
     tabView.center = CGPointMake(bounds.size.width / 2, tabView.center.y)
+    
     layoutNotifications()
   }
   
