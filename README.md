@@ -32,13 +32,13 @@ Hermes shows all queued up notifications at once, with an easy way to swipe thro
 // uses Hermes singleton
 let hermes = Hermes.sharedInstance
 
-// a success notification template
+// 'Upload Complete!' success Notification
 let successNotification = HermesNotification()
 successNotification.text = "Upload complete!"
 successNotification.image = UIImage(named: "success_icon")
 successNotification.color = .greenColor()
 
-// a failure notification template
+// 'Upload failed :(' failure Notification
 let failureNotification = HermesNotification()
 failureNotification.text = "Upload failed :("
 failureNotification.image = UIImage(named: "error_icon")
