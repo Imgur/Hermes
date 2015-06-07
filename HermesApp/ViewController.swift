@@ -9,22 +9,22 @@ class ViewController: UIViewController, HermesDelegate {
     view.backgroundColor = .whiteColor()
     hermes.delegate = self
     
-    var notification1 = HermesNotification()
+    let notification1 = HermesNotification()
     notification1.text = "Testing 123!!!"
     notification1.image = UIImage(named: "logo")
-    notification1.highlightColor = .greenColor()
+    notification1.color = .greenColor()
     notification1.setTarget(self, selector:"foo:")
     notification1.soundPath = NSBundle.mainBundle().pathForResource("notify", ofType: "wav")
     
     var notification2 = HermesNotification()
     notification2.text = "Someone just gave you a gift!"
     notification2.image = UIImage(named: "logo")
-    notification2.highlightColor = .redColor()
+    notification2.color = .redColor()
     
     var notification3 = HermesNotification()
     notification3.text = "ZOMG ROFLCOPTERS!!! This is reallllly long omg hahaha askljd alksjd asd"
     notification3.image = UIImage(named: "logo")
-    notification3.highlightColor = .yellowColor()
+    notification3.color = .yellowColor()
 
     hermes.postNotifications([notification1, notification2, notification3, notification1, notification2, notification3])
   }

@@ -15,7 +15,7 @@ public class HermesNotification: NSObject {
     }
   }
   public var attributedText: NSAttributedString?
-  public var highlightColor: UIColor?
+  public var color: UIColor?
   public var image: UIImage?
   public var imageURL: NSURL?
   public var tag: String?

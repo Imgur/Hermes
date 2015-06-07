@@ -4,7 +4,7 @@ class HermesDefaultNotificationView: HermesNotificationView {
   override var notification: HermesNotification? {
     didSet {
       textLabel.attributedText = notification?.attributedText
-      colorView.backgroundColor = notification?.highlightColor
+      colorView.backgroundColor = notification?.color
       imageView.image = notification?.image
       layoutSubviews()
     }
