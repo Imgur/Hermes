@@ -42,6 +42,9 @@ successNotification.text = "Upload complete!"
 successNotification.image = UIImage(named: "success_icon")
 successNotification.color = .greenColor()
 
+// Call self.foo() when the NotificationView for this Notification is tapped
+successNotification.setTarget(self, selector:"foo:")
+
 // 'Upload failed :(' failure Notification
 let failureNotification = HermesNotification()
 failureNotification.text = "Upload failed :("
@@ -80,3 +83,5 @@ It's that easy!
 
 ![hermes success notification](http://i.imgur.com/LnBCeAh.png)
 
+###Subclassing HermesNotificationView
+*TODO*
