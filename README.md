@@ -2,9 +2,9 @@
 
 ![hermes text](http://i.imgur.com/vlg4X61.png)
 
-Hermes is a simple and robust in-app notification system for iOS written in Swift.  It supports notifications with text/attributedText, an icon, a sound, and a color, and a target/selector pair--out of the box.  You can easily build your own notification template and add any number of attributes to a HermesNotification.
+**Hermes is a simple and robust in-app notification system for iOS written in Swift.**  It supports posting Notifications with styled or unstyled text, an icon, sound, color, and a target/selector pair.  You can easily build your own notification template and add any number of attributes and features to a HermesNotification.
 
-Hermes shows all queued up notifications at once, with an easy way to swipe through them (it will animate through them automatically if you don't touch any notifications for 3 seconds)
+Hermes shows all queued up notifications at once, with an easy way to swipe through them (and will animate through them automatically if you don't touch any notifications for 3 seconds)
 
 ###Components
 - **Hermes** (public)
@@ -23,7 +23,9 @@ Hermes shows all queued up notifications at once, with an easy way to swipe thro
 
   The BulletinView is a UIView that shows 1 or many NotificationViews. Hermes does not let you subclass and use your own BulletinView.
 
-###How to use
+###How to use 
+*In two easy steps!*
+
 1. Make one or many Notifications
 2. ```hermes.postNotifications([...])```
 
