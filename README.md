@@ -6,7 +6,28 @@ Hermes is a simple and robust in-app notification system for iOS written in Swif
 
 Hermes shows all queued up notifications at once, with an easy way to swipe through them (it will animate through them automatically if you don't touch any notifications for 3 seconds)
 
+###Components
+- **Hermes** (public)
+
+  You will use Hermes.sharedInstance to post Notifications.  You can tell Hermes when to *wait()* and collect notifications and when to *go()* and post notifications as soon as Hermes has any.
+  
+- **Notification** (public, extendable)
+
+  A Notification is a model that has attributes like text, image, sound, and color. You can extend or subclass Notifications and use them in custom NotificationViews
+  
+- **NotificationView** (public, extendable)
+
+  A NotificationView is a UIView that displays Notifications.  Hermes lets you subclass and display your own NotificationViews that match your app's style.
+  
+- **BulletinView** (protected)
+
+  The BulletinView is a UIView that shows 1 or many NotificationViews. Hermes does not let you subclass and use your own BulletinView.
+
 ###How to use
+1. Make one or many Notifications
+2. ```hermes.postNotifications([...])```
+
+###Sample code
 ```swift
 // uses Hermes singleton
 let hermes = Hermes.sharedInstance
