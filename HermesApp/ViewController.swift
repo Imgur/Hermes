@@ -13,7 +13,10 @@ class ViewController: UIViewController, HermesDelegate {
     notification1.text = "Upload complete! Tap here to show an alert!"
     notification1.image = UIImage(named: "logo")
     notification1.color = .greenColor()
-    notification1.setTarget(self, selector:"alert:")
+    notification1.action = { notification in
+      let alert = UIAlertView(title: "Success", message: "Hermes notifications are actionable", delegate: nil, cancelButtonTitle: "Close")
+      alert.show()
+    }
     notification1.soundPath = NSBundle.mainBundle().pathForResource("notify", ofType: "wav")
     
     var notification2 = HermesNotification()
@@ -50,11 +53,6 @@ class ViewController: UIViewController, HermesDelegate {
   func hermesNotificationViewForNotification(#hermes: Hermes, notification: HermesNotification) -> HermesNotificationView? {
     // You can create your own HermesNotificationView subclass and return it here :D (or return nil for the default notification view)
     return nil
-  }
-  
-  func alert(obj: AnyObject) {
-    let alert = UIAlertView(title: "Success", message: "Hermes notifications are actionable", delegate: nil, cancelButtonTitle: "Close")
-    alert.show()
   }
 }
 

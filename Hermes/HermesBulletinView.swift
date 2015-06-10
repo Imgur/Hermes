@@ -191,8 +191,8 @@ class HermesBulletinView: UIView, UIScrollViewDelegate {
       notificationView!.frame = notificationViewFrame
       notificationView!.notification = notification
       
-      if notification.target != nil && notification.selector != nil {
-        var tapGesture = UITapGestureRecognizer(target: notification.target!, action: notification.selector!)
+      if notification.action != nil {
+        var tapGesture = UITapGestureRecognizer(target: self, action: "action:")
         notificationView?.addGestureRecognizer(tapGesture)
       }
       
@@ -200,6 +200,13 @@ class HermesBulletinView: UIView, UIScrollViewDelegate {
     }
     
     scrollView.contentSize = CGSizeMake(CGRectGetMaxX(notificationViewFrame), scrollView.bounds.size.height)
+  }
+  
+  func action(tapGesture: UITapGestureRecognizer) {
+    var notificationView = tapGesture.view as! HermesNotificationView
+    if let notification = notificationView.notification {
+      notification.invokeAction()
+    }
   }
   
   override func layoutSubviews() {

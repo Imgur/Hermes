@@ -1,0 +1,10 @@
+framework module Hermes {
+  umbrella header "Hermes.h"
+
+  export *
+  module * { export * }
+}
+
+module Hermes.Swift {
+    header "Hermes-Swift.h"
+}
