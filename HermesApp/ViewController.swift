@@ -42,8 +42,14 @@ class ViewController: UIViewController, HermesDelegate {
     notification3.color = .yellowColor()
 
     
-    let delayTime = dispatch_time(DISPATCH_TIME_NOW,
+    var delayTime = dispatch_time(DISPATCH_TIME_NOW,
       Int64(1 * Double(NSEC_PER_SEC)))
+    dispatch_after(delayTime, dispatch_get_main_queue()) {
+      self.hermes.postNotifications([notification1, notification2, notification3, notification1, notification2, notification3])
+    }
+    
+    delayTime = dispatch_time(DISPATCH_TIME_NOW,
+      Int64(4 * Double(NSEC_PER_SEC)))
     dispatch_after(delayTime, dispatch_get_main_queue()) {
       self.hermes.postNotifications([notification1, notification2, notification3, notification1, notification2, notification3])
     }

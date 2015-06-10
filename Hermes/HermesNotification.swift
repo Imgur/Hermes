@@ -1,7 +1,6 @@
 import UIKit
 
 public class HermesNotification: NSObject {
-  
   public var text: String? {
     set(text) {
       if (text != nil) {

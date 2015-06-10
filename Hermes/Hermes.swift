@@ -113,9 +113,10 @@ public class Hermes: NSObject, HermesBulletinViewDelegate {
     bulletinView = HermesBulletinView()
     bulletinView!.delegate = self
     bulletinView!.notifications = notifications
-    
     bulletinView!.show()
     audioPlayer?.play()
+    
+    notifications.removeAll(keepCapacity: true) 
   }
 
   // Initial setup
@@ -128,7 +129,6 @@ public class Hermes: NSObject, HermesBulletinViewDelegate {
   // MARK: - HermesBulletinViewDelegate
   
   func bulletinViewDidClose(bulletinView: HermesBulletinView) {
-    notifications.removeAll(keepCapacity: true)
     self.bulletinView = nil
     showNotifications()
   }
