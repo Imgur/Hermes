@@ -8,6 +8,12 @@ Hermes shows all queued up notifications at once, with an easy way to swipe thro
 
 ##Installation
 ###Cocoapods Installation
+*TODO*
+
+###Non-Cocoapods Installation
+*TODO*
+
+###Usage
 Import in **Swift**
 ```swift
 import Hermes
@@ -16,12 +22,6 @@ or **Objective-C**
 ```objective-c
 #import <Hermes/Hermes.h>
 ```
-
-###Non-Cocoapods Installation
-*TODO*
-
-###Usage
-*TODO*
 
 ##Getting Started
 ###Components
