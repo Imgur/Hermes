@@ -6,6 +6,24 @@
 
 Hermes shows all queued up notifications at once, with an easy way to swipe through them (and will animate through them automatically if you don't touch any notifications for 3 seconds)
 
+##Installation
+###Cocoapods Installation
+Import in **Swift**
+```swift
+import Hermes
+```
+or **Objective-C**
+```objective-c
+#import <Hermes/Hermes.h>
+```
+
+###Non-Cocoapods Installation
+*TODO*
+
+###Usage
+*TODO*
+
+##Getting Started
 ###Components
 - **Hermes** (public)
 
@@ -52,7 +70,7 @@ failureNotification.image = UIImage(named: "error_icon")
 failureNotification.color = .redColor()
 ```
 
-#### Posting Notifications
+### Posting Notifications
 
 #####If you post Notifications while a Bulletin is already showing, it will show all of the new Notifications after the current Bulletin closes
 ```swift
