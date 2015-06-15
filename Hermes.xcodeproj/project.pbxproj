@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		404D3D2B1B20D05800E7A311 /* HermesDefaultNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404D3D2A1B20D05800E7A311 /* HermesDefaultNotificationView.swift */; };
-		404D3D2F1B221B8A00E7A311 /* HermesNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404D3D2E1B221B8A00E7A311 /* HermesNotificationView.swift */; };
 		404D3D311B22249100E7A311 /* Hermes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40B186161B20C88100636EEE /* Hermes.framework */; };
 		404D3D321B22249100E7A311 /* Hermes.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 40B186161B20C88100636EEE /* Hermes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4094E3B01B225D7A0079ED75 /* notify.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4094E3AF1B225D7A0079ED75 /* notify.wav */; };
+		40ACC8FC1B2F4978005DD77D /* Hermes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ACC8F71B2F4978005DD77D /* Hermes.swift */; };
+		40ACC8FD1B2F4978005DD77D /* HermesNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ACC8F81B2F4978005DD77D /* HermesNotification.swift */; };
+		40ACC8FE1B2F4978005DD77D /* HermesBulletinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ACC8F91B2F4978005DD77D /* HermesBulletinView.swift */; };
+		40ACC8FF1B2F4978005DD77D /* HermesNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ACC8FA1B2F4978005DD77D /* HermesNotificationView.swift */; };
+		40ACC9001B2F4978005DD77D /* HermesDefaultNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ACC8FB1B2F4978005DD77D /* HermesDefaultNotificationView.swift */; };
 		40B1861C1B20C88100636EEE /* Hermes.h in Headers */ = {isa = PBXBuildFile; fileRef = 40B1861B1B20C88100636EEE /* Hermes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		40B186221B20C88100636EEE /* Hermes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40B186161B20C88100636EEE /* Hermes.framework */; };
 		40B186291B20C88100636EEE /* HermesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B186281B20C88100636EEE /* HermesTests.swift */; };
@@ -21,9 +24,6 @@
 		40B186421B20C88E00636EEE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40B186411B20C88E00636EEE /* Images.xcassets */; };
 		40B186451B20C88E00636EEE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40B186431B20C88E00636EEE /* LaunchScreen.xib */; };
 		40B186511B20C88E00636EEE /* HermesAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B186501B20C88E00636EEE /* HermesAppTests.swift */; };
-		40B186591B20C8A000636EEE /* Hermes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B186581B20C8A000636EEE /* Hermes.swift */; };
-		40B1865B1B20C8FF00636EEE /* HermesNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B1865A1B20C8FF00636EEE /* HermesNotification.swift */; };
-		40B1865D1B20C91B00636EEE /* HermesBulletinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B1865C1B20C91B00636EEE /* HermesBulletinView.swift */; };
 		40C6DAF61B251D9D0005B14B /* Hermes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40C6DAF51B251D9D0005B14B /* Hermes.framework */; };
 /* End PBXBuildFile section */
 
@@ -66,9 +66,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		404D3D2A1B20D05800E7A311 /* HermesDefaultNotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HermesDefaultNotificationView.swift; sourceTree = "<group>"; };
-		404D3D2E1B221B8A00E7A311 /* HermesNotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HermesNotificationView.swift; sourceTree = "<group>"; };
 		4094E3AF1B225D7A0079ED75 /* notify.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = notify.wav; sourceTree = "<group>"; };
+		40ACC8F71B2F4978005DD77D /* Hermes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hermes.swift; sourceTree = "<group>"; };
+		40ACC8F81B2F4978005DD77D /* HermesNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HermesNotification.swift; sourceTree = "<group>"; };
+		40ACC8F91B2F4978005DD77D /* HermesBulletinView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HermesBulletinView.swift; sourceTree = "<group>"; };
+		40ACC8FA1B2F4978005DD77D /* HermesNotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HermesNotificationView.swift; sourceTree = "<group>"; };
+		40ACC8FB1B2F4978005DD77D /* HermesDefaultNotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HermesDefaultNotificationView.swift; sourceTree = "<group>"; };
 		40B186161B20C88100636EEE /* Hermes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Hermes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		40B1861A1B20C88100636EEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40B1861B1B20C88100636EEE /* Hermes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Hermes.h; sourceTree = "<group>"; };
@@ -85,9 +88,6 @@
 		40B1864A1B20C88E00636EEE /* HermesAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HermesAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		40B1864F1B20C88E00636EEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40B186501B20C88E00636EEE /* HermesAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HermesAppTests.swift; sourceTree = "<group>"; };
-		40B186581B20C8A000636EEE /* Hermes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hermes.swift; sourceTree = "<group>"; };
-		40B1865A1B20C8FF00636EEE /* HermesNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HermesNotification.swift; sourceTree = "<group>"; };
-		40B1865C1B20C91B00636EEE /* HermesBulletinView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HermesBulletinView.swift; sourceTree = "<group>"; };
 		40C6DAF51B251D9D0005B14B /* Hermes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Hermes.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -161,11 +161,11 @@
 			children = (
 				40C6DAF51B251D9D0005B14B /* Hermes.framework */,
 				40B1861B1B20C88100636EEE /* Hermes.h */,
-				40B186581B20C8A000636EEE /* Hermes.swift */,
-				40B1865A1B20C8FF00636EEE /* HermesNotification.swift */,
-				40B1865C1B20C91B00636EEE /* HermesBulletinView.swift */,
-				404D3D2E1B221B8A00E7A311 /* HermesNotificationView.swift */,
-				404D3D2A1B20D05800E7A311 /* HermesDefaultNotificationView.swift */,
+				40ACC8F71B2F4978005DD77D /* Hermes.swift */,
+				40ACC8F81B2F4978005DD77D /* HermesNotification.swift */,
+				40ACC8F91B2F4978005DD77D /* HermesBulletinView.swift */,
+				40ACC8FA1B2F4978005DD77D /* HermesNotificationView.swift */,
+				40ACC8FB1B2F4978005DD77D /* HermesDefaultNotificationView.swift */,
 				40B186191B20C88100636EEE /* Supporting Files */,
 			);
 			path = Hermes;
@@ -408,11 +408,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40B1865B1B20C8FF00636EEE /* HermesNotification.swift in Sources */,
-				404D3D2B1B20D05800E7A311 /* HermesDefaultNotificationView.swift in Sources */,
-				40B186591B20C8A000636EEE /* Hermes.swift in Sources */,
-				404D3D2F1B221B8A00E7A311 /* HermesNotificationView.swift in Sources */,
-				40B1865D1B20C91B00636EEE /* HermesBulletinView.swift in Sources */,
+				40ACC9001B2F4978005DD77D /* HermesDefaultNotificationView.swift in Sources */,
+				40ACC8FE1B2F4978005DD77D /* HermesBulletinView.swift in Sources */,
+				40ACC8FF1B2F4978005DD77D /* HermesNotificationView.swift in Sources */,
+				40ACC8FD1B2F4978005DD77D /* HermesNotification.swift in Sources */,
+				40ACC8FC1B2F4978005DD77D /* Hermes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

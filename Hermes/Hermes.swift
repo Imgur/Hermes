@@ -24,6 +24,11 @@ Notes:
 - Currently, this library only works well when you keep your app in one orientation.  Switching between portrait and landscape causes some gnarly
 bugs and still needs to be handled.
 */
+
+@objc public enum HermesStyle : Int {
+    case Dark, Light
+}
+
 public class Hermes: NSObject, HermesBulletinViewDelegate {
   // MARK: - Public variables
   // MARK: - Singleton
@@ -31,10 +36,11 @@ public class Hermes: NSObject, HermesBulletinViewDelegate {
   You typically will never need to use more than one instance of Hermes
   */
   public static let sharedInstance = Hermes()
-
+  public var style: HermesStyle = .Dark
+    
   // MARK: -
   weak public var delegate: HermesDelegate?
-
+    
   // MARK: - private variables
   private var bulletinView: HermesBulletinView?
   private var notifications = [HermesNotification]()
@@ -111,6 +117,13 @@ public class Hermes: NSObject, HermesBulletinViewDelegate {
     }
     
     bulletinView = HermesBulletinView()
+    
+    switch style {
+    case .Dark:
+        bulletinView!.blurEffectStyle = .Dark
+    case .Light:
+        bulletinView!.blurEffectStyle = .ExtraLight
+    }
     bulletinView!.delegate = self
     bulletinView!.notifications = notifications
     bulletinView!.show()

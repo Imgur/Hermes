@@ -1,6 +1,12 @@
 import UIKit
 
+protocol HermesNotificationDelegate: class {
+    func notificationDidChangeAutoClose(notification: HermesNotification)
+}
+
 public class HermesNotification: NSObject {
+  weak var delegate: HermesNotificationDelegate?
+    
   public var text: String? {
     set(text) {
       if (text != nil) {
@@ -20,7 +26,13 @@ public class HermesNotification: NSObject {
   public var tag: String?
   public var soundPath: String?
   public var action: Optional<(HermesNotification) -> ()> = nil
-  
+  public var autoClose = true {
+    didSet {
+      if oldValue != autoClose {
+        delegate?.notificationDidChangeAutoClose(self)
+      }
+    }
+  }
   public func invokeAction() {
     if action != nil {
       action!(self)
