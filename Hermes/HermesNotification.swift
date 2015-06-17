@@ -33,6 +33,7 @@ public class HermesNotification: NSObject {
       }
     }
   }
+  public var autoCloseTimeInterval: NSTimeInterval = 3
   public func invokeAction() {
     if action != nil {
       action!(self)

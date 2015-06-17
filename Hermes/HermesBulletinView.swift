@@ -1,7 +1,7 @@
 import UIKit
 
 protocol HermesBulletinViewDelegate: class {
-  func bulletinViewDidClose(bulletinView: HermesBulletinView)
+  func bulletinViewDidClose(bulletinView: HermesBulletinView, explicit: Bool)
   func bulletinViewNotificationViewForNotification(notification: HermesNotification) -> HermesNotificationView?
 }
 
@@ -11,7 +11,7 @@ let kNotificationHeight = 110 as CGFloat
 class HermesBulletinView: UIView, UIScrollViewDelegate, HermesNotificationDelegate {
   weak var delegate: HermesBulletinViewDelegate?
 
-  private var currentNotification: HermesNotification {
+  var currentNotification: HermesNotification {
     get {
       var page = pageFromOffset(scrollView.contentOffset)
       return notifications[page]
@@ -37,6 +37,11 @@ class HermesBulletinView: UIView, UIScrollViewDelegate, HermesNotificationDelega
   var blurEffectStyle: UIBlurEffectStyle = .Dark {
     didSet {
       backgroundView?.removeFromSuperview()
+      if blurEffectStyle == .Dark {
+        tabView.backgroundColor = UIColor(white: 1, alpha: 0.6)
+      } else {
+        tabView.backgroundColor = UIColor(white: 0, alpha: 0.1)
+      }
       remakeBackgroundView()
     }
   }
@@ -56,7 +61,6 @@ class HermesBulletinView: UIView, UIScrollViewDelegate, HermesNotificationDelega
     scrollView.contentInset = UIEdgeInsetsMake(0, kMargin, 0, kMargin)
     scrollView.delegate = self
     
-    tabView.backgroundColor = UIColor(white: 1, alpha: 0.4)
     addSubview(scrollView)
     addSubview(tabView)
   }
@@ -89,8 +93,9 @@ class HermesBulletinView: UIView, UIScrollViewDelegate, HermesNotificationDelega
     
     if gesture.state == .Ended {
       var layoutViewFrame = layoutViewFrameInView(gesture.view!.superview!)
-      if dy > layoutViewFrame.size.height * 0.5 {
-        close()
+      let velocity = gesture.velocityInView(gesture.view!.superview!)
+      if dy > layoutViewFrame.size.height * 0.5 || velocity.y > 500{
+        close(explicit: true)
       } else {
         animateIn()
       }
@@ -103,7 +108,7 @@ class HermesBulletinView: UIView, UIScrollViewDelegate, HermesNotificationDelega
     UIView.animateWithDuration(0.4, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
       self.frame = bulletinFrame
       }, completion: { completed in
-        self.scheduleCloseTimer(timeInterval: 3.0)
+        self.scheduleCloseTimer()
     })
     
   }
@@ -122,13 +127,13 @@ class HermesBulletinView: UIView, UIScrollViewDelegate, HermesNotificationDelega
     })
   }
   
-  func scheduleCloseTimer(#timeInterval: NSTimeInterval) {
+  func scheduleCloseTimer() {
     if currentNotification.autoClose {
-        timer = NSTimer.scheduledTimerWithTimeInterval(timeInterval, target: self, selector: "nextPageOrClose", userInfo: nil, repeats: false)
+        timer = NSTimer.scheduledTimerWithTimeInterval(currentNotification.autoCloseTimeInterval, target: self, selector: "nextPageOrClose", userInfo: nil, repeats: false)
     }
   }
   
-  func close() {
+  func close(#explicit: Bool) {
     timer?.invalidate()
     
     userInteractionEnabled = false
@@ -142,7 +147,7 @@ class HermesBulletinView: UIView, UIScrollViewDelegate, HermesNotificationDelega
       }, completion: { completed in
         self.removeFromSuperview()
         self.userInteractionEnabled = true
-        self.delegate?.bulletinViewDidClose(self)
+        self.delegate?.bulletinViewDidClose(self, explicit: explicit)
     })
   }
   
@@ -165,13 +170,13 @@ class HermesBulletinView: UIView, UIScrollViewDelegate, HermesNotificationDelega
     var totalPages = Int(scrollView.contentSize.width / pageWidth)
     
     if currentPage + 1 >= totalPages {
-      close()
+      close(explicit: false)
     } else {
       var newPage = currentPage + 1
       CATransaction.begin()
       scrollView.setContentOffset(contentOffsetForPage(newPage), animated: true)
       CATransaction.setCompletionBlock({
-        self.scheduleCloseTimer(timeInterval: 3.0)
+        self.scheduleCloseTimer()
       })
       CATransaction.commit()
     }
@@ -254,6 +259,14 @@ class HermesBulletinView: UIView, UIScrollViewDelegate, HermesNotificationDelega
       return Int((offset.x + pageWidth * 0.5) / pageWidth)
   }
   
+  // MARK: - Overrides
+  override func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
+    var rect = bounds
+    rect.origin.y -= 44
+    rect.size.height += 44
+    return CGRectContainsPoint(rect, point)
+  }
+    
   // MARK: - UIScrollViewDelegate
   func scrollViewWillBeginDragging(scrollView: UIScrollView) {
     timer?.invalidate()
@@ -276,14 +289,14 @@ class HermesBulletinView: UIView, UIScrollViewDelegate, HermesNotificationDelega
   }
   
   func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-    scheduleCloseTimer(timeInterval: 3.0)
+    scheduleCloseTimer()
   }
     
   // MARK: - HermesNotificationDelegate
   func notificationDidChangeAutoClose(notification: HermesNotification) {
     if notification == currentNotification {
       if notification.autoClose {
-        scheduleCloseTimer(timeInterval: 3)
+        scheduleCloseTimer()
       } else {
         timer?.invalidate()
       }

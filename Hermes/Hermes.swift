@@ -8,6 +8,13 @@ import AVFoundation
   :returns: the notification view, or nil to use HermesDefaultNotificationView
   */
   optional func hermesNotificationViewForNotification(#hermes: Hermes, notification: HermesNotification) -> HermesNotificationView?
+    
+  /**
+  :param: hermes the Hermes instance
+  :param: explicit is true if the user closed the bulletin with their finger, instead of relying on autoclose
+  :param: notification the notification that was showing when Hermes was closed
+  */
+  optional func hermesDidClose(hermes: Hermes, explicit: Bool, notification: HermesNotification)
 }
 
 /**
@@ -102,9 +109,16 @@ public class Hermes: NSObject, HermesBulletinViewDelegate {
   }
   
   public func close() {
-    bulletinView?.close()
+    bulletinView?.close(explicit: false)
   }
   
+  public func containsNotification(notification: HermesNotification) -> Bool{
+    if let bulletinView = self.bulletinView {
+        return contains(bulletinView.notifications, notification)
+    }
+    return false
+  }
+    
   // MARK: - private methods
   
   /**
@@ -141,7 +155,8 @@ public class Hermes: NSObject, HermesBulletinViewDelegate {
   
   // MARK: - HermesBulletinViewDelegate
   
-  func bulletinViewDidClose(bulletinView: HermesBulletinView) {
+  func bulletinViewDidClose(bulletinView: HermesBulletinView, explicit: Bool) {
+    delegate?.hermesDidClose?(self, explicit: explicit, notification: bulletinView.currentNotification)
     self.bulletinView = nil
     showNotifications()
   }
