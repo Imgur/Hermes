@@ -2,7 +2,7 @@
 
 ![hermes text](http://i.imgur.com/vlg4X61.png)
 
-**Hermes is a simple and robust in-app notification system for iOS written in Swift.**  It supports posting Notifications with styled or unstyled text, an icon, sound, color, and a target/selector pair.  You can easily build your own notification template and add any number of attributes and features to a HermesNotification.
+**Hermes is a simple and robust in-app notification system for iOS written in Swift.**  It supports posting Notifications with styled or unstyled text, an icon, sound, color, and an action closure.  You can easily build your own notification template and add any number of attributes and features to a HermesNotification.
 
 Hermes shows all queued up notifications at once, with an easy way to swipe through them (and will animate through them automatically if you don't touch any notifications for 3 seconds)
 
@@ -61,7 +61,9 @@ successNotification.image = UIImage(named: "success_icon")
 successNotification.color = .greenColor()
 
 // Call self.foo() when the NotificationView for this Notification is tapped
-successNotification.setTarget(self, selector:"foo:")
+successNotification.action = { notification in
+    self.foo() 
+}
 
 // 'Upload failed :(' failure Notification
 let failureNotification = HermesNotification()
