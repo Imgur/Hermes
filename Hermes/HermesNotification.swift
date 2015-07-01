@@ -25,7 +25,7 @@ public class HermesNotification: NSObject {
   public var imageURL: NSURL?
   public var tag: String?
   public var soundPath: String?
-  public var action: Optional<(HermesNotification) -> ()> = nil
+  public var action: ((HermesNotification) -> Void)? = nil
   public var autoClose = true {
     didSet {
       if oldValue != autoClose {

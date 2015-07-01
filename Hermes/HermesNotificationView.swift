@@ -14,7 +14,7 @@ public class HermesNotificationView: UIView {
   }
   
   public override func layoutSubviews() {
-    let margin = 8 as CGFloat
+    let margin: CGFloat = 8
     contentView.frame = CGRectMake(margin, 0, bounds.size.width - 2 * margin, bounds.size.height - margin)
   }
 }

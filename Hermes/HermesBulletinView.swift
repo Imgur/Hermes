@@ -5,8 +5,8 @@ protocol HermesBulletinViewDelegate: class {
   func bulletinViewNotificationViewForNotification(notification: HermesNotification) -> HermesNotificationView?
 }
 
-let kMargin = 8 as CGFloat
-let kNotificationHeight = 110 as CGFloat
+let kMargin: CGFloat = 8
+let kNotificationHeight: CGFloat = 110
 
 class HermesBulletinView: UIView, UIScrollViewDelegate, HermesNotificationDelegate {
   weak var delegate: HermesBulletinViewDelegate?
@@ -209,12 +209,10 @@ class HermesBulletinView: UIView, UIScrollViewDelegate, HermesNotificationDelega
       return
     }
      
-    var i = 0
     var notificationViewFrame = notificationViewFrameInView(superview!)
 
-    for notification in notifications {
+    for (i, notification) in enumerate(notifications) {
       notificationViewFrame.origin.x = CGFloat(i) * notificationViewFrame.size.width
-      i++
 
       var notificationView = delegate?.bulletinViewNotificationViewForNotification(notification)
       if notificationView == nil {
