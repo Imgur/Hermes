@@ -8,10 +8,12 @@ Hermes shows all queued up notifications at once, with an easy way to swipe thro
 
 ##Installation
 ###Cocoapods Installation
-*TODO*
+Hermes is available on CocoaPods. Just add the following to your project Podfile:
+
+pod 'Hermes', '~> 1.0'
 
 ###Non-Cocoapods Installation
-*TODO*
+You can drop Hermes' files directly into your project, or drag the Hermes project into your workspace.
 
 ###Usage
 Import in **Swift**
@@ -104,4 +106,29 @@ It's that easy!
 ![hermes success notification](http://i.imgur.com/LnBCeAh.png)
 
 ###Subclassing HermesNotificationView
-*TODO*
+Subclassing HermesNotificationView is very easy, and gives you the freedom to make the view as simple or complicated as you want.
+```swift
+class CustomNotificationView: HermesNotificationView {
+  override var notification: HermesNotification? {
+    didSet {
+      // update your view
+    }
+  }
+}
+```
+
+Next you need is to implement the HermesDelegate like this:
+```swift
+hermes.delegate = self
+```
+
+And the delegate method:
+```swift
+func hermesNotificationViewForNotification(#hermes: Hermes, notification: HermesNotification) -> HermesNotificationView? {
+        if notification.tag == kCustomNotificationTag {
+            return CustomNotificationView()
+        }
+        return nil
+    }
+```
+You can tag HermesNotifications to help with determining which custom HermesNotificationView to use, or just always return your custom notification view. This is up to you!
