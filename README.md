@@ -10,7 +10,9 @@ Hermes shows all queued up notifications at once, with an easy way to swipe thro
 ###Cocoapods Installation
 Hermes is available on CocoaPods. Just add the following to your project Podfile:
 
+```
 pod 'Hermes', '~> 1.0'
+```
 
 ###Non-Cocoapods Installation
 You can drop Hermes' files directly into your project, or drag the Hermes project into your workspace.
