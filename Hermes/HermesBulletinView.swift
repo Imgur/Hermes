@@ -10,17 +10,17 @@ let kNotificationHeight: CGFloat = 110
 
 class HermesBulletinView: UIView, UIScrollViewDelegate, HermesNotificationDelegate {
   weak var delegate: HermesBulletinViewDelegate?
-
+  
   var currentNotification: HermesNotification {
     get {
       var page = pageFromOffset(scrollView.contentOffset)
       return notifications[page]
     }
   }
-    
+  
   let scrollView = UIScrollView()
   var backgroundView: UIVisualEffectView?
-
+  
   var currentPage: Int = 0
   var timer: NSTimer?
   
@@ -34,7 +34,17 @@ class HermesBulletinView: UIView, UIScrollViewDelegate, HermesNotificationDelega
   }
   
   var tabView = UIView()
-  var blurEffectStyle: UIBlurEffectStyle = .Dark {
+  var style: HermesStyle = .Dark {
+    didSet {
+      switch style {
+      case .Light:
+        blurEffectStyle = .ExtraLight
+      case .Dark:
+        blurEffectStyle = .Dark
+      }
+    }
+  }
+  private var blurEffectStyle: UIBlurEffectStyle = .Dark {
     didSet {
       backgroundView?.removeFromSuperview()
       if blurEffectStyle == .Dark {
@@ -45,11 +55,11 @@ class HermesBulletinView: UIView, UIScrollViewDelegate, HermesNotificationDelega
       remakeBackgroundView()
     }
   }
-    
+  
   required init(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-    
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
     
@@ -64,7 +74,7 @@ class HermesBulletinView: UIView, UIScrollViewDelegate, HermesNotificationDelega
     addSubview(scrollView)
     addSubview(tabView)
   }
-    
+  
   private func remakeBackgroundView() {
     let blurEffect = UIBlurEffect(style: blurEffectStyle)
     backgroundView = UIVisualEffectView(effect: blurEffect)
@@ -104,7 +114,7 @@ class HermesBulletinView: UIView, UIScrollViewDelegate, HermesNotificationDelega
   
   func animateIn() {
     var bulletinFrame = bulletinFrameInView(self.superview!)
-
+    
     UIView.animateWithDuration(0.4, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
       self.frame = bulletinFrame
       }, completion: { completed in
@@ -129,7 +139,7 @@ class HermesBulletinView: UIView, UIScrollViewDelegate, HermesNotificationDelega
   
   func scheduleCloseTimer() {
     if currentNotification.autoClose {
-        timer = NSTimer.scheduledTimerWithTimeInterval(currentNotification.autoCloseTimeInterval, target: self, selector: "nextPageOrClose", userInfo: nil, repeats: false)
+      timer = NSTimer.scheduledTimerWithTimeInterval(currentNotification.autoCloseTimeInterval, target: self, selector: "nextPageOrClose", userInfo: nil, repeats: false)
     }
   }
   
@@ -204,19 +214,20 @@ class HermesBulletinView: UIView, UIScrollViewDelegate, HermesNotificationDelega
   }
   
   func layoutNotifications() {
-    // TODO: handle a relayout -- relaying out this view right now adds duplicate noitficationViews
+    // TODO: handle a relayout -- relaying out this view right now adds duplicate notificationViews
     if superview == nil {
       return
     }
-     
+    
     var notificationViewFrame = notificationViewFrameInView(superview!)
-
+    
     for (i, notification) in enumerate(notifications) {
       notificationViewFrame.origin.x = CGFloat(i) * notificationViewFrame.size.width
-
+      
       var notificationView = delegate?.bulletinViewNotificationViewForNotification(notification)
       if notificationView == nil {
         notificationView = HermesDefaultNotificationView()
+        (notificationView as! HermesDefaultNotificationView).style = style
       }
       notificationView!.frame = notificationViewFrame
       notificationView!.notification = notification
@@ -241,10 +252,10 @@ class HermesBulletinView: UIView, UIScrollViewDelegate, HermesNotificationDelega
   
   override func layoutSubviews() {
     backgroundView?.frame = CGRectMake(0, 0, bounds.size.width, superview!.bounds.size.height)
-
+    
     scrollView.frame = bounds
     
-    var tabViewFrame = CGRectMake(0, 4, 40, 2)
+    var tabViewFrame = CGRectMake(0, 9, 32, 5)
     tabView.frame = tabViewFrame
     tabView.center = CGPointMake(bounds.size.width / 2, tabView.center.y)
     
@@ -252,9 +263,9 @@ class HermesBulletinView: UIView, UIScrollViewDelegate, HermesNotificationDelega
   }
   
   func pageFromOffset(offset: CGPoint) -> Int {
-      var boundsWidth = scrollView.bounds.size.width
-      var pageWidth = boundsWidth
-      return Int((offset.x + pageWidth * 0.5) / pageWidth)
+    var boundsWidth = scrollView.bounds.size.width
+    var pageWidth = boundsWidth
+    return Int((offset.x + pageWidth * 0.5) / pageWidth)
   }
   
   // MARK: - Overrides
@@ -264,7 +275,7 @@ class HermesBulletinView: UIView, UIScrollViewDelegate, HermesNotificationDelega
     rect.size.height += 44
     return CGRectContainsPoint(rect, point)
   }
-    
+  
   // MARK: - UIScrollViewDelegate
   func scrollViewWillBeginDragging(scrollView: UIScrollView) {
     timer?.invalidate()
@@ -289,7 +300,7 @@ class HermesBulletinView: UIView, UIScrollViewDelegate, HermesNotificationDelega
   func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
     scheduleCloseTimer()
   }
-    
+  
   // MARK: - HermesNotificationDelegate
   func notificationDidChangeAutoClose(notification: HermesNotification) {
     if notification == currentNotification {

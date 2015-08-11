@@ -134,9 +134,9 @@ public class Hermes: NSObject, HermesBulletinViewDelegate {
     
     switch style {
     case .Dark:
-        bulletinView!.blurEffectStyle = .Dark
+        bulletinView!.style = .Dark
     case .Light:
-        bulletinView!.blurEffectStyle = .ExtraLight
+        bulletinView!.style = .Light
     }
     bulletinView!.delegate = self
     bulletinView!.notifications = notifications
