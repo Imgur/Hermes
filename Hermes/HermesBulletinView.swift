@@ -6,7 +6,7 @@ protocol HermesBulletinViewDelegate: class {
 }
 
 let kMargin: CGFloat = 8
-let kNotificationHeight: CGFloat = 110
+let kNotificationHeight: CGFloat = 98
 
 class HermesBulletinView: UIView, UIScrollViewDelegate, HermesNotificationDelegate {
   weak var delegate: HermesBulletinViewDelegate?
