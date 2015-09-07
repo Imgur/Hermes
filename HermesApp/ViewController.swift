@@ -56,7 +56,7 @@ class ViewController: UIViewController, HermesDelegate {
   }
   
   // MARK: - HermesDelegate
-  func hermesNotificationViewForNotification(#hermes: Hermes, notification: HermesNotification) -> HermesNotificationView? {
+  func hermesNotificationViewForNotification(hermes hermes: Hermes, notification: HermesNotification) -> HermesNotificationView? {
     // You can create your own HermesNotificationView subclass and return it here :D (or return nil for the default notification view)
     return nil
   }

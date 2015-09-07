@@ -279,6 +279,8 @@
 		40B1860D1B20C88100636EEE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = Imgur;
 				TargetAttributes = {

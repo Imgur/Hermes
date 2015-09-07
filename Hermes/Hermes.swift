@@ -3,16 +3,16 @@ import AVFoundation
 
 @objc public protocol HermesDelegate {
   /**
-  :param: hermes the Hermes instance
-  :param: notification the notification being made
-  :returns: the notification view, or nil to use HermesDefaultNotificationView
+  - parameter hermes: the Hermes instance
+  - parameter notification: the notification being made
+  - returns: the notification view, or nil to use HermesDefaultNotificationView
   */
-  optional func hermesNotificationViewForNotification(#hermes: Hermes, notification: HermesNotification) -> HermesNotificationView?
+  optional func hermesNotificationViewForNotification(hermes hermes: Hermes, notification: HermesNotification) -> HermesNotificationView?
     
   /**
-  :param: hermes the Hermes instance
-  :param: explicit is true if the user closed the bulletin with their finger, instead of relying on autoclose
-  :param: notification the notification that was showing when Hermes was closed
+  - parameter hermes: the Hermes instance
+  - parameter explicit: is true if the user closed the bulletin with their finger, instead of relying on autoclose
+  - parameter notification: the notification that was showing when Hermes was closed
   */
   optional func hermesDidClose(hermes: Hermes, explicit: Bool, notification: HermesNotification)
 }
@@ -70,7 +70,7 @@ public class Hermes: NSObject, HermesBulletinViewDelegate {
   /**
   Give Hermes one notification to post. If waiting == false, you'll see this notification right away
   
-  :param: notification The notification you want Hermes to post
+  - parameter notification: The notification you want Hermes to post
   */
   public func postNotification(notification: HermesNotification) {
     postNotifications([notification])
@@ -79,7 +79,7 @@ public class Hermes: NSObject, HermesBulletinViewDelegate {
   /**
   Give Hermes an array of notifications to post. If waiting == false, you'll see these notifications right away
   
-  :param: notifications The notifications you want Hermes to post
+  - parameter notifications: The notifications you want Hermes to post
   */
   public func postNotifications(notifications: [HermesNotification]) {
     self.notifications += notifications
@@ -114,7 +114,7 @@ public class Hermes: NSObject, HermesBulletinViewDelegate {
   
   public func containsNotification(notification: HermesNotification) -> Bool{
     if let bulletinView = self.bulletinView {
-        return contains(bulletinView.notifications, notification)
+        return bulletinView.notifications.contains(notification)
     }
     return false
   }
@@ -147,9 +147,9 @@ public class Hermes: NSObject, HermesBulletinViewDelegate {
   }
 
   // Initial setup
-  func prepareSound(#path: String) {
-    var sound = NSURL(fileURLWithPath: path)
-    audioPlayer = AVAudioPlayer(contentsOfURL: sound, error: nil)
+  func prepareSound(path path: String) {
+    let sound = NSURL(fileURLWithPath: path)
+    audioPlayer = try? AVAudioPlayer(contentsOfURL: sound)
     audioPlayer!.prepareToPlay()
   }
   
