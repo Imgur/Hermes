@@ -284,14 +284,12 @@
 				TargetAttributes = {
 					40B186151B20C88100636EEE = {
 						CreatedOnToolsVersion = 6.3.2;
-						DevelopmentTeam = Q9SM2F33Y6;
 					};
 					40B186201B20C88100636EEE = {
 						CreatedOnToolsVersion = 6.3.2;
 					};
 					40B186351B20C88E00636EEE = {
 						CreatedOnToolsVersion = 6.3.2;
-						DevelopmentTeam = Q9SM2F33Y6;
 					};
 				};
 			};
