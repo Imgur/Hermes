@@ -7,7 +7,7 @@ import AVFoundation
   :param: notification the notification being made
   :returns: the notification view, or nil to use HermesDefaultNotificationView
   */
-  optional func hermesNotificationViewForNotification(#hermes: Hermes, notification: HermesNotification) -> HermesNotificationView?
+  optional func hermesNotificationViewForNotification(hermes hermes: Hermes, notification: HermesNotification) -> HermesNotificationView?
     
   /**
   :param: hermes the Hermes instance
@@ -114,7 +114,7 @@ public class Hermes: NSObject, HermesBulletinViewDelegate {
   
   public func containsNotification(notification: HermesNotification) -> Bool{
     if let bulletinView = self.bulletinView {
-        return contains(bulletinView.notifications, notification)
+        return bulletinView.notifications.contains(notification)
     }
     return false
   }
@@ -147,9 +147,9 @@ public class Hermes: NSObject, HermesBulletinViewDelegate {
   }
 
   // Initial setup
-  func prepareSound(#path: String) {
-    var sound = NSURL(fileURLWithPath: path)
-    audioPlayer = AVAudioPlayer(contentsOfURL: sound, error: nil)
+  func prepareSound(path path: String) {
+    let sound = NSURL(fileURLWithPath: path)
+    audioPlayer = try! AVAudioPlayer(contentsOfURL: sound)
     audioPlayer!.prepareToPlay()
   }
   

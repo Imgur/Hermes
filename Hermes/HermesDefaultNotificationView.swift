@@ -1,7 +1,7 @@
 import UIKit
 
 extension UIImageView {
-  func h_setImage(#url: NSURL) {
+  func h_setImage(url url: NSURL) {
     // Using NSURLSession API to fetch image
     // TODO: maybe change NSURLConfiguration to add things like timeouts and cellular configuration
     let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
@@ -10,12 +10,12 @@ extension UIImageView {
     // NSURLRequest Object
     let request = NSURLRequest(URL: url)
     
-    let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
+    let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
       if error == nil {
         // Set whatever image attribute to the returned data
-        self.image = UIImage(data: data)!
+        self.image = UIImage(data: data!)!
       } else {
-        println(error)
+        print(error)
       }
     })
     
@@ -82,8 +82,8 @@ class HermesDefaultNotificationView: HermesNotificationView {
     var rightRect = CGRect()
     CGRectDivide(bounds, &leftRect, &rightRect, CGRectGetMaxX(imageView.frame), .MinXEdge)
   
-    var space: CGFloat = 20
-    var constrainedSize = CGRectInset(rightRect, (space + margin) * 0.5, 0).size
+    let space: CGFloat = 20
+    let constrainedSize = CGRectInset(rightRect, (space + margin) * 0.5, 0).size
     
     textLabel.frame.size = textLabel.sizeThatFits(constrainedSize)
     textLabel.frame.origin.x = CGRectGetMaxX(imageView.frame) + space
@@ -93,7 +93,7 @@ class HermesDefaultNotificationView: HermesNotificationView {
     
     // This centers the text across the whole view, unless that would cause it to block the imageView
     textLabel.center.x = CGRectGetMidX(bounds)
-    var leftBound = CGRectGetMaxX(imageView.frame) + space
+    let leftBound = CGRectGetMaxX(imageView.frame) + space
     if textLabel.frame.origin.x < leftBound {
       textLabel.frame.origin.x = leftBound
     }
