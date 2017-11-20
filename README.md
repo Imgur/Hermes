@@ -1,3 +1,7 @@
+This project is **NOT MAINTAINED**.
+
+------
+
 ![hermes logo](http://i.imgur.com/1ZbEIuH.png)
 
 ![hermes text](http://i.imgur.com/vlg4X61.png)
